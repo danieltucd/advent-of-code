@@ -12,14 +12,19 @@ with open(r"day3input.txt") as file:
     # Part 2
     def part2():
         total_joltage = 0
+        
         for line in file:
             start = 0
             joltage = ""
-            for i in reversed(range(12)):
-                value = max(line[start:-i])
+
+            for i in range(12):
+                remaining = 12 - i
+                end = len(line) - remaining + 1
+                value = max(line[start:end])
                 start = line.find(value, start) + 1
                 joltage += value
-            total_joltage += joltage
+            total_joltage += int(joltage)
+
         return total_joltage
     
 print(part1())
